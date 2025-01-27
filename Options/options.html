@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Test Extension Options</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="settingsContainer">
+      <h1>Settings</h1>
+
+      <label for="bedtime">Set Bedtime:</label>
+      <input type="time" id="bedtime" name="bedtime" />
+
+      <label for="reminder">Reminder Start Time:</label>
+      <input type="time" id="reminder" name="reminder" />
+
+      <div class="repeatDays">
+        <p>Bedtime repeat days:</p>
+        <label><input type="checkbox" name="repeat-day" value="M" /> M</label>
+        <label><input type="checkbox" name="repeat-day" value="T" /> T</label>
+        <label><input type="checkbox" name="repeat-day" value="W" /> W</label>
+        <label><input type="checkbox" name="repeat-day" value="T" /> T</label>
+        <label><input type="checkbox" name="repeat-day" value="F" /> F</label>
+        <label><input type="checkbox" name="repeat-day" value="S" /> S</label>
+        <label><input type="checkbox" name="repeat-day" value="S" /> S</label>
+      </div>
+
+      <div class="blockedWebsites">
+        <h2>Blocked Websites List</h2>
+        <textarea
+          id="blockedSites"
+          placeholder="Please separate each website with a comma e.g. https://www.google.com"
+        ></textarea>
+      </div>
+
+      <label> <input type="checkbox" id="softBlock" /> Soft Block </label>
+
+      <h2>Notification Settings</h2>
+
+      <label for="notificationFrequency">Notification Frequency:</label>
+      <select id="notificationFrequency" name="notificationFrequency">
+        <option value="15-minutes">Every 15 Minutes</option>
+        <option value="30-minutes">Every 30 Minutes</option>
+        <option value="1-hour">Every Hour</option>
+        <option value="none">None</option>
+      </select>
+
+      <label for="notificationStyle">Notification Style:</label>
+      <select id="notificationStyle" name="notificationStyle">
+        <option value="banner">Banner</option>
+        <option value="modal">Modal</option>
+        <option value="toast">Toast</option>
+      </select>
+
+      <label for="customMessage">Change Notification Message:</label>
+      <input
+        type="text"
+        id="customMessage"
+        placeholder="Enter Custom Text here"
+      />
+
+      <h2>Other Settings</h2>
+
+      <div class="toggleContainer">
+        <div class="toggleItem">
+          <label class="switch">
+            <input type="checkbox" id="pauseExtension" />
+            <span class="slider round"></span>
+          </label>
+          <span class="toggleLabel">Pause Extension</span>
+        </div>
+
+        <div class="toggleItem">
+          <label class="switch">
+            <input type="checkbox" id="darkMode" />
+            <span class="slider round"></span>
+          </label>
+          <span class="toggleLabel">Dark Mode</span>
+        </div>
+      </div>
+
+      <div id="status"></div>
+      <button id="save">Save</button>
+    </div>
+    <script src="options.js"></script>
+  </body>
+</html>
