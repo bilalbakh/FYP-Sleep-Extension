@@ -3,6 +3,14 @@
   <head>
     <title>My Test Extension Options</title>
     <link rel="stylesheet" href="options.css" />
+    <script>
+      chrome.storage.sync.get(["darkMode"], (items) => {
+        alert(items.darkMode);
+        if (items.darkMode) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      });
+    </script>
   </head>
   <body>
     <div class="settingsContainer">
@@ -29,8 +37,7 @@
         <h2>Blocked Websites List</h2>
         <textarea
           id="blockedSites"
-          placeholder="Please separate each website with a comma e.g. https://www.google.com"
-        ></textarea>
+          placeholder="Please separate each website with a comma e.g. https://www.google.com, https://www.facebook.com,"></textarea>
       </div>
 
       <label> <input type="checkbox" id="softBlock" /> Soft Block </label>
@@ -56,8 +63,7 @@
       <input
         type="text"
         id="customMessage"
-        placeholder="Enter Custom Text here"
-      />
+        placeholder="Enter Custom Text here" />
 
       <h2>Other Settings</h2>
 

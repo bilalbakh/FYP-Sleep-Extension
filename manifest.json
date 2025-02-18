@@ -1,13 +1,28 @@
 {
   "name": "Sleep Tool",
-  "description": "Base Level Extension",
-  "version": "1.0",
+  "description": "Procrastination Blocker",
+  "version": "0.0.1",
   "manifest_version": 3,
   "icons": {},
-  "permissions": ["storage"],
-  "options_page": "Options/options.html",
+  "permissions": ["alarms", "notifications", "storage", "tabs"],
+  "options_page": "options/options.html",
   "action": {
     "default_popup": "index.html",
-    "default_icon": "/Images/hello_extensions.png"
+    "default_icon": "/images/hello_extensions.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["scripts/content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["pages/softblock.html", "pages/hardblock.html"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "background": {
+    "service_worker": "scripts/background.js"
   }
 }

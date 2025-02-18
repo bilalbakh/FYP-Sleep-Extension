@@ -1,21 +1,14 @@
-//Retrieve blocked site information
+// Modify content.js to properly check current URL:
 chrome.storage.sync.get(["blockedSites", "softBlock"], (items) => {
-  let blockedSites = [];
-  if (items.blockedSites) {
-    blockedSites = items.blockedSites.split(",");
-    for (let i = 0; i < blockedSites.length; i++) {
-      blockedSites[i] = blockedSites[i].trim();
-    }
-  } else {
-    blockedSites = [];
-  }
-  const softBlock = items.softBlock;
+  const currentUrl = window.location.hostname.replace(/^www\./, "");
+  const blockedSites = items.blockedSites;
+  alert(blockedSites);
 
-  blockedSites.forEach((site) => {
-    if (softBlock) {
-      window.location.href = chrome.runtime.getURL("softblock.html");
+  if (blockedSites.includes(currentUrl)) {
+    if (items.softBlock) {
+      window.location.href = chrome.runtime.getURL("pages/softblock.html");
     } else {
-      window.location.href = chrome.runtime.getURL("hardblock.html");
+      window.location.href = chrome.runtime.getURL("pages/hardblock.html");
     }
-  });
+  }
 });

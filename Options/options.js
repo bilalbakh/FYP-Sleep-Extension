@@ -1,12 +1,19 @@
-// Saves options to chrome.storage
-
+// saves options to chrome.storage
 const saveOptions = () => {
   const bedtime = document.getElementById("bedtime").value;
   const reminder = document.getElementById("reminder").value;
   const repeatDays = Array.from(
     document.querySelectorAll('input[name="repeat-day"]:checked')
   ).map((checkbox) => checkbox.value);
-  const blockedSites = document.getElementById("blockedSites").value;
+  const blockedSitesInput = document.getElementById("blockedSites").value;
+  const blockedSites = blockedSitesInput
+    .split(",")
+    .map((site) => site.trim())
+    .map((site) => {
+      // Remove protocol and www to get the domain only
+      return site.replace(/^(https?:\/\/)?(www\.)?/, "");
+    })
+    .join(", ");
   const softBlock = document.getElementById("softBlock").checked;
   const notificationFrequency = document.getElementById(
     "notificationFrequency"
@@ -35,13 +42,13 @@ const saveOptions = () => {
       status.textContent = "Options saved.";
       setTimeout(() => {
         status.textContent = "";
+        location.replace(location.href);
       }, 750);
     }
   );
 };
 
-// Restores select box and checkbox state using the preferences
-// stored in chrome.storage.
+// restores options from chrome.storage
 const restoreOptions = () => {
   chrome.storage.sync.get(
     {

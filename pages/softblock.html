@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Page Blocked</title>
+    <link rel="stylesheet" href="block.css" />
+    <script>
+      chrome.storage.sync.get(["darkMode"], (items) => {
+        if (items.darkMode) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <div class="block-container">
+      <h1>Access Blocked</h1>
+      <p>
+        This website is currently blocked to help you manage your sleep
+        schedule.
+      </p>
+      <p>Please take a break and try again later.</p>
+    </div>
+  </body>
+</html>

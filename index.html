@@ -1,5 +1,15 @@
 <html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+  </head>
   <body>
     <h1>Sleep Tool</h1>
   </body>
+  <script>
+    chrome.storage.sync.get(["darkMode"], (items) => {
+      if (items.darkMode) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    });
+  </script>
 </html>
